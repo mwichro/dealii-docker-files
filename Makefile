@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------------
 #
-# Copyright (C) 2020 by the deal.II authors
+# Copyright (C) 2020 - 2025 by the deal.II authors
 #
 # This file is part of the deal.II library.
 #
@@ -26,20 +26,20 @@ DOCKER_BUILD=docker buildx build --push --platform $(PLATFORM) --output type=reg
 dependencies-jammy:
 	$(DOCKER_BUILD) \
 		-t dealii/dependencies:jammy-${ARCH} \
-		-t dealii/dependencies:jammy-v9.6.0-${ARCH} \
+		-t dealii/dependencies:jammy-v9.7.1-${ARCH} \
 		--build-arg IMG=jammy \
-                --build-arg VERSION=9.6.0-1~ubuntu22.04.1~ppa1 \
-                --build-arg REPO=ppa:ginggs/deal.ii-9.6.0-backports \
+                --build-arg VERSION=9.7.1-1~ubuntu22.04.1~ppa1 \
+                --build-arg REPO=ppa:ginggs/deal.ii-9.7.1-backports \
                 ./dependencies
 
 dependencies-noble:
 	$(DOCKER_BUILD) \
 		-t dealii/dependencies:noble-${ARCH} \
-		-t dealii/dependencies:noble-v9.6.0-${ARCH} \
+		-t dealii/dependencies:noble-v9.7.1-${ARCH} \
 		-t dealii/dependencies:latest-${ARCH} \
 		--build-arg IMG=noble \
-		--build-arg VERSION=9.6.0-1~ubuntu24.04.1~ppa1 \
-		--build-arg REPO=ppa:ginggs/deal.ii-9.6.0-backports \
+		--build-arg VERSION=9.7.1-1~ubuntu24.04.1~ppa1 \
+		--build-arg REPO=ppa:ginggs/deal.ii-9.7.1-backports \
 		./dependencies
 
 dependencies-%-merge::
@@ -52,26 +52,26 @@ dependencies-%-merge::
 		dealii/dealii:$*-arm64 \
 		dealii/dealii:$*-amd64
 
-v9.6.2-noble:
+v9.7.1-noble:
 	$(DOCKER_BUILD) \
-		-t dealii/dealii:v9.6.2-noble-${ARCH} \
+		-t dealii/dealii:v9.7.1-noble-${ARCH} \
 		-t dealii/dealii:latest-${ARCH} \
 		--build-arg IMG=noble \
-		--build-arg VER=v9.6.2 \
+		--build-arg VER=v9.7.1 \
 		--build-arg NJOBS=12 \
 		./dealii
 
-v9.6.2-jammy:
+v9.7.1-jammy:
 	$(DOCKER_BUILD) \
-		-t dealii/dealii:v9.6.2-jammy-${ARCH} \
+		-t dealii/dealii:v9.7.1-jammy-${ARCH} \
 		--build-arg IMG=jammy \
-		--build-arg VER=v9.6.2 \
+		--build-arg VER=v9.7.1 \
 		--build-arg NJOBS=12 \
 		./dealii
 
-noble: dependencies-noble v9.6.2-noble 
+noble: dependencies-noble v9.7.1-noble
 
-jammy: dependencies-jammy v9.6.2-jammy
+jammy: dependencies-jammy v9.7.1-jammy
 
 all: noble jammy
 
@@ -80,5 +80,5 @@ all: noble jammy
 	dependencies-noble \
 	dependencies-%-merge \
 	%-merge \
-	v9.6.2-jammy \
-	v9.6.2-noble
+	v9.7.1-jammy \
+	v9.7.1-noble

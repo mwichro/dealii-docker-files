@@ -10,18 +10,18 @@ Images are tagged with the ubuntu distribution they are based on.
 
 You can pull any of the images from dockerhub using (for example)
 
-    docker pull dealii/dealii:v9.6.0-noble
+    docker pull dealii/dealii:v9.7.1-noble
 
 after which you could run an interactive shell in it:
 
-    docker run -i -t dealii/dealii:v9.6.0-noble
+    docker run -i -t dealii/dealii:v9.7.1-noble
 
 This will drop you in an isolated environment where you can experiment with deal.II.
 
 Versions of interest:
 
-- ``dealii/dealii:v9.6.0-noble`` - deal.II v9.6.0, Ubuntu 24.04
-- ``dealii/dealii:v9.6.0-jammy`` - deal.II v9.6.0, Ubuntu 22.04
+- ``dealii/dealii:v9.7.1-noble`` - deal.II v9.7.1, Ubuntu 24.04
+- ``dealii/dealii:v9.7.1-jammy`` - deal.II v9.7.1, Ubuntu 22.04
 
 A list of all available images is here:
 

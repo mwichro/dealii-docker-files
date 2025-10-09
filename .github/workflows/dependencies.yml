@@ -26,11 +26,11 @@ jobs:
 
         system:
           - ubuntu_version: jammy
-            dealii_version: 9.6.0-1~ubuntu22.04.1~ppa1
-            tag: jammy-v9.6.0
+            dealii_version: 9.7.1-1~ubuntu22.04.1~ppa1
+            tag: jammy-v9.7.1
           - ubuntu_version: noble
-            dealii_version: 9.6.0-1~ubuntu24.04.1~ppa1
-            tag: noble-v9.6.0
+            dealii_version: 9.7.1-1~ubuntu24.04.1~ppa1
+            tag: noble-v9.7.1
 
     steps:
       - name: Checkout code
@@ -54,7 +54,7 @@ jobs:
           build-args: |
             IMG=${{ matrix.system.ubuntu_version }}
             VERSION=${{ matrix.system.dealii_version}}
-            REPO=ppa:ginggs/deal.ii-9.6.0-backports 
+            REPO=ppa:ginggs/deal.ii-9.7.1-backports
           platforms: ${{ matrix.arch.build }}
           push: true
           tags: |
@@ -75,7 +75,7 @@ jobs:
           - jammy
           - noble
         ver:
-          - v9.6.0
+          - v9.7.1
 
     steps:
       - name: Set up Docker Buildx
