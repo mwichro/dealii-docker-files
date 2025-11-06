@@ -73,6 +73,25 @@ noble: dependencies-noble v9.7.1-noble
 
 jammy: dependencies-jammy v9.7.1-jammy
 
+noble-dev: dependencies-noble
+	$(DOCKER_BUILD) \
+		-t dealii/dealii:noble-dev-${ARCH} \
+		-t dealii/dealii:latest-dev-${ARCH} \
+		--build-arg IMG=noble \
+		--build-arg VER=v9.7.1 \
+		--build-arg NJOBS=12 \
+		--build-arg DEV=ON \
+		./dealii
+
+jammy-dev: dependencies-jammy
+	$(DOCKER_BUILD) \
+		-t dealii/dealii:jammy-dev-${ARCH} \
+		--build-arg IMG=jammy \
+		--build-arg VER=v9.7.1 \
+		--build-arg NJOBS=12 \
+		--build-arg DEV=ON \
+		./dealii
+
 all: noble jammy
 
 .PHONY: all \
@@ -81,4 +100,8 @@ all: noble jammy
 	dependencies-%-merge \
 	%-merge \
 	v9.7.1-jammy \
-	v9.7.1-noble
+	v9.7.1-noble \
+	noble \
+	jammy \
+	noble-dev \
+	jammy-dev
