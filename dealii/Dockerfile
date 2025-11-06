@@ -12,9 +12,11 @@ USER root
 RUN if [ "$DEV" = "ON" ]; then \
         BUILD_USER=$USER; \
         BUILD_DIR=/home/$USER/dealii-$VER; \
+        INSTALL_DIR=/home/$USER/deal.II; \
     else \
         BUILD_USER=root; \
         BUILD_DIR=/usr/src/dealii-$VER; \
+        INSTALL_DIR=/usr/local; \
     fi && \
     su - $BUILD_USER -c "\
         cd $(dirname $BUILD_DIR) && \
@@ -60,6 +62,7 @@ RUN if [ "$DEV" = "ON" ]; then \
             -DDEAL_II_WITH_UMFPACK=ON \
             -DDEAL_II_WITH_VTK=ON \
             -DDEAL_II_WITH_ZLIB=ON \
+            -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR \
             .. && \
         ninja -j $NJOBS install" && \
     if [ "$DEV" = "OFF" ]; then \
